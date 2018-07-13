@@ -1,0 +1,67 @@
+<%include header.ejs%>
+<body>
+
+<div class="container">
+    <div style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+        <form id="form-login" method="post">
+            <div class="panel-heading form-group">
+                <div class="panel-title">Đăng Ký</div>
+                <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="./login">Đăng nhập</a></div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" name="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="newInputPassword">New Password</label>
+                <input type="password"  name="newPassword" class="form-control" id="inputNewPassword" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="newInputPassword">Password</label>
+                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+
+            <button type="button" class="btn btn-primary signup"> Đăng ký </button>
+            <div class="form-group" style="margin-top: 15px">
+                <label for="newInputPassword"  hidden class="error" style="font-style: italic;color: red; font-size: 13px">
+
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $('.signup').click(function () {
+            let data  =  {
+                email : $('#inputEmail1').val(),
+                newPassword: $('#inputNewPassword').val(),
+                password : $('#inputPassword').val()
+            }
+            dangKy(data)
+        })
+
+      function dangKy(data) {
+          $.ajax({
+              url : "",
+              type : "post",
+              dataType:"text",
+              data : data,
+              success : function (result){
+                  console.log(result)
+              },
+              error: function (error) {
+                  if (error){
+                      console.log(error)
+                    $('.error').removeAttr('hidden');
+                    $('.error').text(`${error.status.toString()}  ${error.statusText}`)
+                  }
+              }
+          })
+      }
+    })
+</script>
+<%include foooter.ejs%>

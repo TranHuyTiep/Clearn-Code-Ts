@@ -1,0 +1,10 @@
+.idea/
+dist
+node_modules/
+npm-debug.log
+package-lock.json
+logs/access.log
+yarn.lock
+/logs
+upload/
+/.vscode
